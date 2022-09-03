@@ -1,4 +1,4 @@
-// call category api
+// Api
 const loadCategory = async () => {
     const url = 'https://openapi.programming-hero.com/api/news/categories'
     try {
@@ -9,7 +9,7 @@ const loadCategory = async () => {
         console.log(error)
     }
 }
-// display category 
+// Display category 
 const categoryDisplay = async () => {
     const data = await loadCategory();
     data.forEach(category => {
@@ -24,9 +24,9 @@ const categoryDisplay = async () => {
     })
 }
 
-// load data after click category button
+// load data after click category btn
 
-// call news api 
+// news api  call
 const loadNews = async(category_id) => {
     // Spinner start
     toggleSpinner(true);
@@ -48,10 +48,10 @@ const loadNews = async(category_id) => {
     return displayNews(newsesData);
 }
 
-// display news after click a category.
+// Show news after click a category.
 const displayNews = async(newsesData) => {
     
-    // sort array by total_view
+    // Sort array total_view
     let x = newsesData.sort((a, b) => (b.total_view > a.total_view ? 1 : -1));
 
     const newsSection = document.getElementById('news-area');
@@ -103,12 +103,12 @@ const displayNews = async(newsesData) => {
         newsSection.appendChild(createSingleNews);
 
     })
-    // Spinner start
+    // Spinner 
     toggleSpinner(false)
 
 }
 
-// Spinner 
+
 const toggleSpinner = isLoading => {
     const spinner = document.getElementById('spinner')
     if (isLoading) {
@@ -118,14 +118,14 @@ const toggleSpinner = isLoading => {
     }
 }
 
-// load newsDetails api
+// NewsDetails api
 const newsDetailsLoad = async (id) => {
     const response = await fetch(`https://openapi.programming-hero.com/api/news/${id}`)
     const newsData = await response.json();
     displayNewsDetails(newsData.data)
 }
 
-// display news details using a modal
+// modal
 const displayNewsDetails = (newsData) => {
     console.log(newsData)
     const modalContainer = document.getElementById('news-details-modal');
